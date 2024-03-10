@@ -84,20 +84,22 @@ http://localhost:5006/api/user/delete
 
 
 
-Method: GET View Your all post
-From these Route we can see all the post of user that were created
+
 
 ```
+Method: GET View Your all post
+From these Route we can see all the post of user that were created
 
 http://localhost:5006/api/post
 
 ```
-* Method:  POST
-Create a Post
-Create your post
 
-Note That : For creating you have to be authenicated (Logined in)
 ```
+Method:  POST
+Create a Post
+Create your post 
+Note That : For creating you have to be authenicated (Logined in)
+
 http://localhost:5006/api/post/create
 
 {
@@ -105,19 +107,17 @@ http://localhost:5006/api/post/create
 }
 
 ```
-
-* Method: GET - View a Post
-
-Like id ("65ecb025284a1d79abb2a6df") of post
 ```
+Method: GET - View a Post
+Like id ("65ecb025284a1d79abb2a6df") of post
+
 http://localhost:5006/api/post/:id
 
 ```
 
-* Method: PATCH - Update a Post
-
-
 ```
+Method: PATCH - Update a Post
+
 http://localhost:5006/api/post/update
 {
 "username":"india2809"
