@@ -3,6 +3,7 @@ const router = express.Router();
 const userController = require("../controller/userController");
 const followController = require("../controller/followController");
 
+// api/user
 router.post('/create',userController.createProfile);
 router.post('/login',userController.login);
 // authenicated 

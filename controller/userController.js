@@ -24,7 +24,7 @@ exports.createProfile= async (req,res,next)=>{
     const profileData = req.body;
     const x = uuidv4();
     profileData.uuid = x;
-    console.log(x);
+    
     const checkUser = await User.findOne({username:profileData.username});
     
     if(checkUser){
