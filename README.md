@@ -47,6 +47,9 @@ Create your account
 
 ```
 
+<br>
+
+
 ```
 Method: POST - Login to your account
 
@@ -59,12 +62,18 @@ Login through your "username"
 
 ```
 
+<br>
+
+
 ```
 Method: GET - View Profile
 http://localhost:5006/api/user/profile
 
 View your profile
 ```
+
+<br>
+
 
 ```
 Method: PATCH - Update your profile
@@ -73,6 +82,7 @@ http://localhost:5006/api/user/update
 
 ```
 
+<br>
 
 
 ```
@@ -81,9 +91,7 @@ http://localhost:5006/api/user/delete
 
 ```
 
-
-
-
+<br>
 
 
 ```
@@ -93,6 +101,8 @@ From these Route we can see all the post of user that were created
 http://localhost:5006/api/post
 
 ```
+
+<br>
 
 ```
 Method:  POST
@@ -107,6 +117,9 @@ http://localhost:5006/api/post/create
 }
 
 ```
+
+<br>
+
 ```
 Method: GET - View a Post
 Like id ("65ecb025284a1d79abb2a6df") of post
@@ -114,6 +127,9 @@ Like id ("65ecb025284a1d79abb2a6df") of post
 http://localhost:5006/api/post/:id
 
 ```
+
+
+<br>
 
 ```
 Method: PATCH - Update a Post
@@ -124,6 +140,8 @@ http://localhost:5006/api/post/update
 }
 
 ```
+
+<br>
 
 
 ```
@@ -137,7 +155,7 @@ Delete the post using the id
 
 
 
-
+<br>
 
 
 ```
@@ -147,6 +165,8 @@ http://localhost:5006/api/user/follow/dkfdkjfkkf
 Follow the Other by their id
 ```
 
+<br>
+
 ```
 Method: GET - Unfollow Other
 
@@ -154,12 +174,15 @@ http://localhost:5006/api/user/unfollow/dkfdkjfkkf
 Unfollow the other with the help of id
 ```
 
+<br>
+
 ```
 Method: GET - List of All followers/following
 http://localhost:5006/api/user/list
 
 ```
 
+<br>
 
 
 ```
@@ -168,11 +191,17 @@ http://localhost:5006/api/user/other/:id
 Get the list of user whose he following and also the follower
 ```
 
+
+<br>
+
 ```
 Method: GET - 
 http://localhost:5006/api/user/
 Get all the post of user whom you are following in sorted order - the latest post come first
 ```
+
+<br>
+
 
 ```
 Method: GET - get your all followers
