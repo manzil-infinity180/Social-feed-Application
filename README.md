@@ -30,12 +30,13 @@ DATABASE=mongodb+srv://testUsename:<PASSWORD>@cluster0.jhs3v7u.mongodb.net/?retr
 
 ## Documentation 
 Link - https://documenter.getpostman.com/view/27140962/2sA2xh3t1T
+
 ```
 Method: POST - Create/Signup
 
 http://localhost:5006/api/user/create
 
-Create your account
+Create your account by mentioning these data no need to fill the uuid(unique id for identification) we will generate it automatically by timestamps
 
 {
     "username":"rahulvs",
@@ -67,9 +68,11 @@ Login through your "username"
 
 ```
 Method: GET - View Profile
+View your profile - your profile data 
+
 http://localhost:5006/api/user/profile
 
-View your profile
+
 ```
 
 <br>
@@ -80,6 +83,10 @@ Method: PATCH - Update your profile
 
 http://localhost:5006/api/user/update
 
+{
+"username":"rahulvs"
+}
+
 ```
 
 <br>
@@ -87,6 +94,7 @@ http://localhost:5006/api/user/update
 
 ```
 Method: DELETE - Delete a profile
+
 http://localhost:5006/api/user/delete
 
 ```
@@ -105,9 +113,10 @@ http://localhost:5006/api/post
 <br>
 
 ```
-Method:  POST
-Create a Post
-Create your post 
+Method: POST - Create a Post
+
+Create your post there is no need to mention the userid because we can easily get it from the logined user
+
 Note That : For creating you have to be authenicated (Logined in)
 
 http://localhost:5006/api/post/create
@@ -122,7 +131,9 @@ http://localhost:5006/api/post/create
 
 ```
 Method: GET - View a Post
+
 Like id ("65ecb025284a1d79abb2a6df") of post
+For getting any specific post you have to mention the id field into the api endpoint and we can get the data using req.params.id
 
 http://localhost:5006/api/post/:id
 
@@ -133,8 +144,10 @@ http://localhost:5006/api/post/:id
 
 ```
 Method: PATCH - Update a Post
+We have to mention the id whose you want to update the data 
 
-http://localhost:5006/api/post/update
+http://localhost:5006/api/post/update/:id
+
 {
 "username":"india2809"
 }
@@ -146,10 +159,11 @@ http://localhost:5006/api/post/update
 
 ```
 Method: DELETE - Delete a Post
+Same goes with these also - Delete the post using the id
 
-http://localhost:5006/api/post/delete/774477484fff
+http://localhost:5006/api/post/delete/:id
 
-Delete the post using the id
+
 
 ```
 
@@ -160,24 +174,30 @@ Delete the post using the id
 
 ```
 Method: GET - Follow Other
+Follow the Other by their id - Just by mentioning the id of that user you want to follow we can handle the case 
 
 http://localhost:5006/api/user/follow/dkfdkjfkkf
-Follow the Other by their id
+
 ```
 
 <br>
 
 ```
 Method: GET - Unfollow Other
+Same as Follow routes - Unfollow the other with the help of id
 
 http://localhost:5006/api/user/unfollow/dkfdkjfkkf
-Unfollow the other with the help of id
+
 ```
 
 <br>
 
 ```
+
 Method: GET - List of All followers/following
+User can see the full list of follwer and following list
+No need to mention any id - we are checking for the authencated user
+
 http://localhost:5006/api/user/list
 
 ```
@@ -187,17 +207,10 @@ http://localhost:5006/api/user/list
 
 ```
 Method: GET - List of Other followers/following
-http://localhost:5006/api/user/other/:id
 Get the list of user whose he following and also the follower
-```
 
+http://localhost:5006/api/user/other/:id
 
-<br>
-
-```
-Method: GET - 
-http://localhost:5006/api/user/
-Get all the post of user whom you are following in sorted order - the latest post come first
 ```
 
 <br>
@@ -205,9 +218,10 @@ Get all the post of user whom you are following in sorted order - the latest pos
 
 ```
 Method: GET - get your all followers
+get all the data whom you follow and who is following you
 
 http://localhost:5006/api/user/other/65ecad557bab7de578eb23c5
-get all the data whom you follow and who is following you
+
 
 ```
 
