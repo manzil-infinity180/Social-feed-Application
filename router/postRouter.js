@@ -14,6 +14,7 @@ router.patch('/update/:id',postController.updatePost);
 router.delete('/delete/:id',postController.deletePost);
 
 // following & follwers list
-router.get('/following/list',socialController.getAllPostFollowing);
+// router.get('/following/:id',socialController.getAllPostFollowing);
+router.get('/following/:id',socialController.getFollowingPost);
     
 module.exports = router;

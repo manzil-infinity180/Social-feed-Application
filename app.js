@@ -14,9 +14,9 @@ app.use(helmet());
 
 // rate limiter 
 const limiter = rateLimit({
-    max:5,
+    max:3,
     windowMs : 1*5*1000,
-    message :'Only 1 request can make in 1 seconds'
+    message :'Only 3 request can make in 5 seconds'
 });
 app.use('/api',limiter);
 
