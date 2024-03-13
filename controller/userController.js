@@ -5,9 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const successResponse = (res,output,responseCode=200)=>{
     res.status(responseCode).json({
         status:"success",
-        data:{
-            output
-        }
+        output
      })
 }
 const failedResponse = (res,error,responseCode=400)=>{
@@ -86,7 +84,7 @@ exports.viewProfile = async(req,res,next) =>{
 }
 exports.otherProfile = async(req,res,next) =>{
     try{
-        const user = await User.findOne({username : req.body.username}).populate('post');
+        const user = await User.findOne({username: req.params.username}).populate('post');
 
         successResponse(res,user,200);
     }catch(err){

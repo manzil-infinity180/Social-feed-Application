@@ -3,9 +3,8 @@ const User = require("../model/userModel");
 const successResponse = (res,output,responseCode=200)=>{
     res.status(responseCode).json({
         status:"success",
-        data:{
-            output
-        }
+        output
+        
      })
 }
 const failedResponse = (res,error,responseCode=400)=>{
