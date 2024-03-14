@@ -13,7 +13,6 @@ const mongoose = require("mongoose");
 const { v4: uuidv4 } = require('uuid');
 // require("dotenv").config({path:});
 let token;
-
 // creating token using jwt 
 const signToken = (id) => {
   return jwt.sign({id},process.env.JWT_SECRET)
@@ -51,7 +50,16 @@ afterAll(async () => {
         username:"rahulDemo",
        });
        console.log(xt);
+
+       const checking = await User.findOne({username:user.username});
+       if(checking){
+          expect(checking.username).toBe(user.username);
+       }else{
+        expect(checking.username).not.toBe(user.username);
+       }
        
+       const xp = await User.create({username:"rahul1237"});
+       console.log(xp)
        const userData = await User.findById(id,{_id:1,username:1,pic_url:1});
        expect(userData.username).toBe(user.username);
        token = signToken(userData._id);
@@ -109,17 +117,14 @@ afterAll(async () => {
     
     test("seeing other profile through the username",async ()=>{
       let response =await request(app).get(`/api/user/profile/rahul1234`).set('Content-Type', 'application/json');
-      console.log(response)
       expect(response.statusCode).toBe(200);
       // expect(response.body.output.username).toBe("rahul1234");
       response = await request(app).get(`/api/user/profile/rahulDemo`).set('Content-Type', 'application/json');;
       expect(response.statusCode).toBe(200);
       // expect(response.body.output.username).not.toBe("rahulDemo");
-
-
-      // console.log(response)
     })
   });
+
   
 
 

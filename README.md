@@ -34,7 +34,7 @@ Link - https://documenter.getpostman.com/view/27140962/2sA2xh3t1T
 ```
 Method: POST - Create/Signup
 
-http://localhost:5006/api/user/create
+https://social-feed-application.onrender.com/api/user/create
 
 Create your account by mentioning these data no need to fill the uuid(unique id for identification) we will generate it automatically by timestamps
 
@@ -54,7 +54,7 @@ Create your account by mentioning these data no need to fill the uuid(unique id 
 ```
 Method: POST - Login to your account
 
-http://localhost:5006/api/user/login
+https://social-feed-application.onrender.com/api/user/login
 
 Login through your "username"
 {
@@ -70,7 +70,7 @@ Login through your "username"
 Method: GET - View Profile
 View your profile - your profile data 
 
-http://localhost:5006/api/user/profile
+https://social-feed-application.onrender.com/api/user/profile
 
 
 ```
@@ -81,7 +81,7 @@ http://localhost:5006/api/user/profile
 ```
 Method: PATCH - Update your profile
 
-http://localhost:5006/api/user/update
+https://social-feed-application.onrender.com/api/user/update
 
 {
 "username":"rahulvs"
@@ -95,7 +95,7 @@ http://localhost:5006/api/user/update
 ```
 Method: DELETE - Delete a profile
 
-http://localhost:5006/api/user/delete
+https://social-feed-application.onrender.com/api/user/delete
 
 ```
 
@@ -106,7 +106,7 @@ http://localhost:5006/api/user/delete
 Method: GET View Your all post
 From these Route we can see all the post of user that were created
 
-http://localhost:5006/api/post
+https://social-feed-application.onrender.com/api/post
 
 ```
 
@@ -119,7 +119,7 @@ Create your post there is no need to mention the userid because we can easily ge
 
 Note That : For creating you have to be authenicated (Logined in)
 
-http://localhost:5006/api/post/create
+https://social-feed-application.onrender.com/api/post/create
 
 {
     "text":"Today i have learned how to use Docker and more about containers"
@@ -135,7 +135,7 @@ Method: GET - View a Post
 Like id ("65ecb025284a1d79abb2a6df") of post
 For getting any specific post you have to mention the id field into the api endpoint and we can get the data using req.params.id
 
-http://localhost:5006/api/post/:id
+https://social-feed-application.onrender.com/api/post/:id
 
 ```
 
@@ -146,7 +146,7 @@ http://localhost:5006/api/post/:id
 Method: PATCH - Update a Post
 We have to mention the id whose you want to update the data 
 
-http://localhost:5006/api/post/update/:id
+https://social-feed-application.onrender.com/api/post/update/:id
 
 {
 "username":"india2809"
@@ -161,7 +161,7 @@ http://localhost:5006/api/post/update/:id
 Method: DELETE - Delete a Post
 Same goes with these also - Delete the post using the id
 
-http://localhost:5006/api/post/delete/:id
+https://social-feed-application.onrender.com/api/post/delete/:id
 
 
 
@@ -176,7 +176,7 @@ http://localhost:5006/api/post/delete/:id
 Method: GET - Follow Other
 Follow the Other by their id - Just by mentioning the id of that user you want to follow we can handle the case 
 
-http://localhost:5006/api/user/follow/dkfdkjfkkf
+https://social-feed-application.onrender.com/api/user/follow/dkfdkjfkkf
 
 ```
 
@@ -186,7 +186,7 @@ http://localhost:5006/api/user/follow/dkfdkjfkkf
 Method: GET - Unfollow Other
 Same as Follow routes - Unfollow the other with the help of id
 
-http://localhost:5006/api/user/unfollow/dkfdkjfkkf
+https://social-feed-application.onrender.com/api/user/unfollow/dkfdkjfkkf
 
 ```
 
@@ -198,7 +198,7 @@ Method: GET - List of All followers/following
 User can see the full list of follwer and following list
 No need to mention any id - we are checking for the authencated user
 
-http://localhost:5006/api/user/list
+https://social-feed-application.onrender.com/api/user/list
 
 ```
 
@@ -209,7 +209,7 @@ http://localhost:5006/api/user/list
 Method: GET - List of Other followers/following
 Get the list of user whose he following and also the follower
 
-http://localhost:5006/api/user/other/:id
+https://social-feed-application.onrender.com/api/user/other/:id
 
 ```
 
@@ -220,7 +220,7 @@ http://localhost:5006/api/user/other/:id
 Method: GET - get your all followers
 get all the data whom you follow and who is following you
 
-http://localhost:5006/api/user/other/65ecad557bab7de578eb23c5
+https://social-feed-application.onrender.com/api/user/other/65ecad557bab7de578eb23c5
 
 
 ```

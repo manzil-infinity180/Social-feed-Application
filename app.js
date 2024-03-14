@@ -10,19 +10,19 @@ const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 
-// app.use(helmet());
+app.use(helmet());
 
-// // rate limiter 
-// const limiter = rateLimit({
-//     max:10,
-//     windowMs : 1*1000,
-//     message :'Only 3 request can make in 5 seconds'
-// });
-// app.use('/api',limiter);
+// rate limiter 
+const limiter = rateLimit({
+    max:10,
+    windowMs : 1*1000,
+    message :'Only 3 request can make in 5 seconds'
+});
+app.use('/api',limiter);
 
-// // sanitize 
-// app.use(mongoSanitize());
-// app.use(xss());
+// sanitize 
+app.use(mongoSanitize());
+app.use(xss());
 
 app.use(express.json());
 app.use(bodyParser.json());
