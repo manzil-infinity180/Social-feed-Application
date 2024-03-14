@@ -8,9 +8,11 @@ To start the backend server, follow these steps:
 
 **Step 2: Start the Server**
 
-- Run `npm start` to launch the server using Nodemon, which automatically restarts the server when changes are made. If you don't have Nodemon installed, you can do so globally by running `npm i -g nodemon`. This will install Nodemon globally on your PC.
+- Run `npm run dev` to launch the server using Nodemon, which automatically restarts the server when changes are made. If you don't have Nodemon installed, you can do so globally by running `npm i -g nodemon`. This will install Nodemon globally on your PC.
 
 These two steps will initiate the backend server, allowing you to access the APIs and services provided by the Social Media App Backend. Ensure that your environment variables are correctly set to enable seamless server operation.
+
+- Running test , run `npm run test` or if you want to see the test in tabular form run `npm run test:ci` 
 
 ## Environment Variables
 
@@ -19,23 +21,31 @@ You can edit below enviroment variable in the sample .env file present in the co
 
 ```
 // config.env
+
 PASSWORD=Your_Password
 DATABASE=mongodb+srv://username:<PASSWORD>@cluster0.jhs3v7u.mongodb.net/?retryWrites=true&w=majority
 JWT_SECRET = american_elite_market_12222222
 
+
 /__test__/.env
+
 DATABASE=mongodb+srv://testUsename:<PASSWORD>@cluster0.jhs3v7u.mongodb.net/?retryWrites=true&w=majority
+JWT_SECRET_TEST = american_elite_market_1222222
 
 ```
 
 ## Documentation 
-Link - https://documenter.getpostman.com/view/27140962/2sA2xh3t1T
+* Link - https://documenter.getpostman.com/view/27140962/2sA2xh3t1T
+* Deployed Link - https://social-feed-application.onrender.com
 
+
+ `Where Server = https://social-feed-application.onrender.com`
+ 
+ <br>
+ 
+ Method: `POST`- Create/Signup
+ * URL - `${Server}/api/user/create`
 ```
-Method: POST - Create/Signup
-
-http://localhost:5006/api/user/create
-
 Create your account by mentioning these data no need to fill the uuid(unique id for identification) we will generate it automatically by timestamps
 
 {
@@ -50,11 +60,10 @@ Create your account by mentioning these data no need to fill the uuid(unique id 
 
 <br>
 
+Method: `POST` - Login to your account
 
+* URL : `${Server}/api/user/login`
 ```
-Method: POST - Login to your account
-
-http://localhost:5006/api/user/login
 
 Login through your "username"
 {
@@ -65,24 +74,18 @@ Login through your "username"
 
 <br>
 
-
-```
-Method: GET - View Profile
+Method: `GET` - View Profile
 View your profile - your profile data 
+* URL : `${Server}/api/user/profile`
 
-http://localhost:5006/api/user/profile
-
-
-```
 
 <br>
 
+Method: `PATCH` - Update your profile
+
+* URL : `${Server}/api/user/update`
 
 ```
-Method: PATCH - Update your profile
-
-http://localhost:5006/api/user/update
-
 {
 "username":"rahulvs"
 }
@@ -91,35 +94,28 @@ http://localhost:5006/api/user/update
 
 <br>
 
+Method: `DELETE` - Delete a profile
+* URL : `${Server}/api/user/delete`
 
-```
-Method: DELETE - Delete a profile
-
-http://localhost:5006/api/user/delete
-
-```
 
 <br>
 
 
-```
-Method: GET View Your all post
+Method: `GET` View Your all post
 From these Route we can see all the post of user that were created
 
-http://localhost:5006/api/post
+* URL : `${Server}/api/post`
 
-```
 
 <br>
 
+Method: `POST` - Create a Post
+* URL : `${Server}/api/post/create`
+* Create your post there is no need to mention the userid because we can easily get it from the logined user
 ```
-Method: POST - Create a Post
-
-Create your post there is no need to mention the userid because we can easily get it from the logined user
 
 Note That : For creating you have to be authenicated (Logined in)
 
-http://localhost:5006/api/post/create
 
 {
     "text":"Today i have learned how to use Docker and more about containers"
@@ -129,24 +125,21 @@ http://localhost:5006/api/post/create
 
 <br>
 
-```
-Method: GET - View a Post
+Method: `GET` - View a Post
+* URL : `${Server}/api/post/:id`
+* Like id ("65ecb025284a1d79abb2a6df") of post
+* For getting any specific post you have to mention the id field into the api endpoint and we can get the data using req.params.id
 
-Like id ("65ecb025284a1d79abb2a6df") of post
-For getting any specific post you have to mention the id field into the api endpoint and we can get the data using req.params.id
-
-http://localhost:5006/api/post/:id
-
-```
 
 
 <br>
 
-```
-Method: PATCH - Update a Post
-We have to mention the id whose you want to update the data 
 
-http://localhost:5006/api/post/update/:id
+Method: `PATCH` - Update a Post
+* URL : `${Server}/api/post/update/:id`
+```
+
+We have to mention the id whose you want to update the data 
 
 {
 "username":"india2809"
@@ -157,71 +150,58 @@ http://localhost:5006/api/post/update/:id
 <br>
 
 
-```
-Method: DELETE - Delete a Post
+Method: `DELETE` - Delete a Post
+* URL : `${Server}/api/post/delete/:id`
 Same goes with these also - Delete the post using the id
 
-http://localhost:5006/api/post/delete/:id
-
-
-
-```
 
 
 
 <br>
 
 
-```
-Method: GET - Follow Other
-Follow the Other by their id - Just by mentioning the id of that user you want to follow we can handle the case 
 
-http://localhost:5006/api/user/follow/dkfdkjfkkf
+Method: `GET` - Follow Other
+* Follow the Other by their id - Just by mentioning the id of that user you want to follow we can handle the case 
 
-```
+* URL : `${Server}/api/user/follow/:id`
+
+
 
 <br>
 
-```
-Method: GET - Unfollow Other
+
+Method: `GET` - Unfollow Other
 Same as Follow routes - Unfollow the other with the help of id
 
-http://localhost:5006/api/user/unfollow/dkfdkjfkkf
+* URL : `${Server}/api/user/unfollow/:id`
 
-```
 
 <br>
 
-```
 
-Method: GET - List of All followers/following
+Method: `GET` - List of All followers/following
+<br>
 User can see the full list of follwer and following list
 No need to mention any id - we are checking for the authencated user
 
-http://localhost:5006/api/user/list
+* URL : `${Server}/api/user/list`
 
-```
 
 <br>
 
 
-```
-Method: GET - List of Other followers/following
-Get the list of user whose he following and also the follower
+Method: `GET` - List of Other followers/following
+* Get the list of user whose he following and also the follower
+* URL : `${Server}/api/user/other/:id`
 
-http://localhost:5006/api/user/other/:id
-
-```
 
 <br>
 
 
-```
-Method: GET - get your all followers
+Method: `GET` - get your all followers
 get all the data whom you follow and who is following you
 
-http://localhost:5006/api/user/other/65ecad557bab7de578eb23c5
+* URL : `${Server}/api/user/other/65ecad557bab7de578eb23c5`
 
-
-```
 
