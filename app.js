@@ -11,7 +11,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 
 app.use(helmet());
-
+app.use(express.static("public"));
 // rate limiter 
 const limiter = rateLimit({
     max:10,
@@ -28,6 +28,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.get('/',(req,res)=>{
+    res.writeHead(200,{'Content-Type':'application/json'})
     res.sendFile(__dirname+'/public/index.html');
 });
 
