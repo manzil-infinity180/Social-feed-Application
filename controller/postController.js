@@ -47,7 +47,7 @@ exports.updatePost = async(req,res,next) =>{
         const authUser = await User.findById(req.user);
         const postToUpdate = await Post.findById(req.params.id);
         console.log("userid "+authUser.uuid +"& uuid " +postToDelete.user_id);
-        if(postToUpdate.userid === authUser.uuid){
+        if(postToUpdate.userid !== authUser.uuid){
             throw new Error("No permission to change others post");
         }
 
@@ -83,7 +83,7 @@ exports.deletePost = async(req,res,next) =>{
         const authUser = await User.findById(req.user);
         const postToDelete = await Post.findById(req.params.id);
          console.log("userid "+authUser.uuid +"& uuid " +postToDelete.userid);
-        if(postToDelete.userid === authUser.uuid){
+        if(postToDelete.userid !== authUser.uuid){
             throw new Error("No permission to change others post");
         }
         // delete the post by _id 
