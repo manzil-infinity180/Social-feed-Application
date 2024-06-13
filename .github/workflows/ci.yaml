@@ -1,0 +1,51 @@
+name: Social-Media-Api-CI-Workflow
+
+on: 
+   pull_request:
+      branches:
+        - main
+      paths:
+         - '/'
+   push:
+      branches:
+         - main
+      paths:
+         - '/'
+
+jobs: 
+
+   test:
+       name: 'Run unit tests'
+       defaults:
+          run:
+             shell: bash
+             working-directory: ./
+       runs-on: ubuntu-latest
+       steps:
+       - uses: actions/checkout@v2
+         name: 'Checkout repository'
+
+       - name: 'Install Dependencies'
+         run: npm install
+         
+       - name: 'Start the server'
+         run: npm run start
+
+   jest-test: 
+          name: 'Jest Test'
+          defaults:
+             run:
+                working-directory: ./
+          runs-on: ubuntu-latest
+          steps:
+          - uses: actions/checkout@v2
+            name: 'Checkout repository'
+            
+          - name: 'Install Dependencies'
+            run: npm install
+
+          - name: 'start testing'
+            run: npm run test:ci
+            
+         
+  
