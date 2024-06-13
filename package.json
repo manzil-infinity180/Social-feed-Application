@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --setupFiles=dotenv/config",
     "test:ci": "jest --coverage",
-    "dev":"nodemon server.js"
+    "dev":"nodemon server.js",
+    "start": "node server.js",
     
   },
   "author": "",
