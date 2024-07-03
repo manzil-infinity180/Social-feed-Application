@@ -21,11 +21,14 @@ jobs:
              node-version: '20.x'
          - name: Install dependencies
            run: npm install
-           env:
-            PASSWORD: ${{ secrets.PASSWORD }}
-            DATABASE: ${{ secrets.DATABASE }}   
-            JWT_SECRET: ${{ secrets.JWT_SECRET }}
-            PORT: ${{ secrets.PORT }}
+         - name: 'Create env file'
+           run: |
+             touch config.env
+              echo PASSWORD = ${{ secrets.PASSWORD }} >> config.env
+              echo DATABASE = ${{ secrets.DATABASE }} >> config.env   
+              echo  JWT_SECRET = ${{ secrets.JWT_SECRET }} >> config.env
+              echo PORT = ${{ secrets.PORT }} >> config.env
+             cat config.env
          - name: 'Start the server'
            run: npm run start
          - name: 'start testing'
