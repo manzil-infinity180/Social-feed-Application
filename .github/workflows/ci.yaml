@@ -23,10 +23,11 @@ jobs:
            run: npm install
          - name: 'Create env file'
            run: |
-             touch config.env
+             touch config.env\
+              echo ${{ secrets.PASSWORD }}
               echo PASSWORD=${{ secrets.PASSWORD }} >> config.env
               echo DATABASE=${{ secrets.DATABASE }} >> config.env   
-              echo  JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
+              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
               echo PORT=${{ secrets.PORT }} >> config.env
              cat config.env
          - name: 'Start the server'
