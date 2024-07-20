@@ -1,41 +1,28 @@
-name: Social-Media-Api-CI-Workflow
-
-on: 
-   pull_request:
-      branches:
-        - main
-   push:
-      branches:
-         - main
-
-jobs: 
-
-   test:
-       name: 'Run unit tests'
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-         - name: Use Node.js
-           uses: actions/setup-node@v4
-           with:
-             node-version: '20.x'
-         - name: Install dependencies
-           run: npm install
-         - name: 'Create env file'
-           run: |
-             touch config.env\
-              echo ${{ secrets.PASSWORD }}
-              echo PASSWORD=${{ secrets.PASSWORD }} >> config.env
-              echo DATABASE=${{ secrets.DATABASE }} >> config.env   
-              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
-              echo PORT=${{ secrets.PORT }} >> config.env
-             cat config.env
-         - name: 'Start the server'
-           run: npm run start
-         - name: 'start testing'
-           run: npm run test:ci
-
-   
-            
-         
-  
+name: social-media-ci
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  deploy:
+    name: build && push image to docker hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: deploy
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v2
+      - name: docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: build and push api
+        id: build-push-api
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: itbeeazy/express-starter:latest
