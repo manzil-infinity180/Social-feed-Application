@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "[Dependency] "
+      prefix-development: "[DevDependency] "
+  - package-ecosystem: pip
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "[DevDependency] "
