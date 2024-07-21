@@ -2,6 +2,7 @@ name: ci
 
 on:
   push:
+  pull_request:
   
 env:
   # Use docker.io for Docker Hub if empty
@@ -35,3 +36,7 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+
+      -
+         name: Run the test
+         run: npm run test:ci
