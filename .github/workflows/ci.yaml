@@ -61,7 +61,7 @@ jobs:
               echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
               echo PORT=${{ secrets.PORT }} >> config.env
               echo "Running ---------"
-              echo :"${secrets.DATABASE}"
+              echo "${secrets.DATABASE}"
              cat config.env
          - name: 'Start the server'
            run: npm run start
