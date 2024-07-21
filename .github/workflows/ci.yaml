@@ -40,6 +40,10 @@ jobs:
   test:
        name: 'Run unit tests'
        runs-on: ubuntu-latest
+       defaults:
+         run:
+           working-directory: ./backend
+       permissions: write-all
        steps:
          - uses: actions/checkout@v4
          - name: Use Node.js
@@ -56,7 +60,8 @@ jobs:
               echo DATABASE=${{ secrets.DATABASE }} >> config.env   
               echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
               echo PORT=${{ secrets.PORT }} >> config.env
-              echo ${{ secrets.DATABASE }}
+              echo "Running ---------"
+              echo :"${secrets.DATABASE}"
              cat config.env
          - name: 'Start the server'
            run: npm run start
