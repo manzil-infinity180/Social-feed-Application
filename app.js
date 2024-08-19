@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const userRouter = require('./router/userRouter');
 const postRouter = require("./router/postRouter");
 
@@ -18,6 +19,10 @@ const limiter = rateLimit({
     windowMs : 1*1000,
     message :'Only 3 request can make in 5 seconds'
 });
+app.use(cors({
+    origin: "*",
+    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+}))
 app.use('/api',limiter);
 
 // sanitize 
