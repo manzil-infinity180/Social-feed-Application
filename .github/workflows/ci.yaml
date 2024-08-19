@@ -1,50 +1,69 @@
-name: Social-Media-Api-CI-Workflow
+name: ci
 
-on: 
-   pull_request:
-      branches:
-        - main
-   push:
-      branches:
-         - main
-
-jobs: 
-
-   test:
-       name: 'Run unit tests'
-       defaults:
-            run:
-              working-directory: /
-       runs-on: ubuntu-latest
-       steps:
-       - uses: actions/checkout@v4
-       - uses: actions/setup-node@v4
-         with:
-          node-version: 20
-          
-       - name: 'Install Dependencies'
-         run: npm install
-         
-       - name: 'Start the server'
-         run: npm run start
-
-   jest-test: 
-          name: 'Jest Test'
-          defaults:
-            run:
-              working-directory: /
-          runs-on: ubuntu-latest
-          steps:
-          - uses: actions/checkout@v4
-          - uses: actions/setup-node@v4
-            with:
-             node-version: 20
-            
-          - name: 'Install Dependencies'
-            run: npm install
-
-          - name: 'start testing'
-            run: npm run test:ci
-            
-         
+on:
+  push:
+  pull_request:
   
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  DOCKER_IMAGE_NAME: social-media-api
+  DOCKERFILE_PATH: ./Dockerfile
+
+jobs:
+  social-media-ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ${{ env.DOCKERFILE_PATH }}
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+
+  test:
+       name: 'Run unit tests'
+       runs-on: ubuntu-latest
+       defaults:
+         run:
+           working-directory: ./
+       permissions: write-all
+       steps:
+         - uses: actions/checkout@v4
+         - name: Use Node.js
+           uses: actions/setup-node@v4
+           with:
+             node-version: '20.x'
+         - name: Install dependencies
+           run: npm install
+         - name: 'Create env file'
+           run: |
+             touch config.env\
+              echo ${{ secrets.PASSWORD }} >> config.env
+              echo PASSWORD=${{ secrets.PASSWORD }} >> config.env
+              echo DATABASE=${{ secrets.DATABASE }} >> config.env   
+              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> config.env
+              echo PORT=${{ secrets.PORT }} >> config.env
+              echo "Running ---------"
+              echo "${{secrets.DATABASE}}"
+             cat config.env
+         - name: 'Start the server'
+           run: npm run start
+         - name: 'start testing'
+           run: npm run test:ci

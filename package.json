@@ -9,9 +9,9 @@
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
-  "engines": {
-    "npm": ">=8.0.0 <9.0.0",
-    "node": ">=16.0.0 <20.0.0"
+  "engines" : { 
+    "npm" : ">=8.0.0 <=10.2.4",
+    "node" : ">=16.0.0 <21.0.0"
   },
   "author": "",
   "license": "ISC",
