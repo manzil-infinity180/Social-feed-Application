@@ -1,3 +1,5 @@
+# Social Feed Application
+
 ### Starting the Server
 
 To start the backend server, follow these steps:
